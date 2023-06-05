@@ -1,0 +1,248 @@
+body{
+    padding: 0;
+    margin: 0;
+    background-color: #0c2716;
+    color:white;
+
+}
+.arc{
+    stroke-width: 2px;
+  }
+  
+  .tooltip{
+    position: fixed;
+    padding: 10px;
+    background-color: #ffffffcc;
+    color: black;
+    font-size: 12px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+
+/* bar graph css */
+.bar_chart{
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    margin-left: 50px;
+}
+  .bar_chart div {
+    font: 10px sans-serif;
+    background-color: #f88c8c;
+    text-align: right;
+    padding: 5px;
+    margin: 3px;
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+  .bar_chart_year{
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    margin-left: 50px;
+}
+  .bar_chart_year div {
+    font: 10px sans-serif;
+    background-color: steelblue;
+    text-align: right;
+    padding: 10px;
+    margin: 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .bar_chart_country{
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    margin-left: 10px;
+}
+  .bar_chart_country div {
+    font: 7px sans-serif;
+    background-color: steelblue;
+    text-align: right;
+    padding: 3.5px;
+    margin: 2px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+.country_filter{
+  position: fixed;
+top: 100px;
+left: 80%;
+
+}
+.country_filter_label{
+  position: fixed;
+top: 100px;
+left: 70%;
+
+}
+
+.year_end_filter_label{
+  position: fixed;
+  top: 170px;
+  left: 70%;
+  
+}
+.year_end_filter{
+  position: fixed;
+  top: 170px;
+  left: 80%;
+}
+.end_year_filter_button{
+  position: fixed;
+  top: 200px;
+  left: 80%;
+}
+.country_filter_button{
+  position: fixed;
+top: 130px;
+left: 80%;
+}
+.reset_filter_button{
+  position: fixed;
+  top: 130px;
+  left: 58%;
+  background-color: red;
+}
+
+
+.topic_filter_label{
+  position: fixed;
+  top: 250px;
+  left: 70%;
+  
+}
+.topic_filter{
+  position: fixed;
+  top: 250px;
+  left: 80%;
+}
+.topic_filter_button{
+  position: fixed;
+  top: 280px;
+  left: 80%;
+}
+
+
+
+.sector_filter_label{
+  position: fixed;
+  top: 320px;
+  left: 70%;
+  
+}
+.sector_filter{
+  position: fixed;
+  top: 320px;
+  left: 80%;
+}
+
+
+.sector_filter_button{
+  position: fixed;
+  top: 350px;
+  left: 80%;
+}
+
+
+.source_filter_label{
+  position: fixed;
+  top: 400px;
+  left: 70%;
+  
+}
+.source_filter{
+  position: fixed;
+  top: 400px;
+  left: 80%;
+}
+
+
+.source_filter_button{
+  position: fixed;
+  top: 430px;
+  left: 80%;
+}
+
+
+
+.region_filter_label{
+  position: fixed;
+  top: 480px;
+  left: 70%;
+  
+}
+.region_filter{
+  position: fixed;
+  top: 480px;
+  left: 80%;
+}
+
+
+.region_filter_button{
+  position: fixed;
+  top: 510px;
+  left: 80%;
+}
+
+
+.pestle_filter_label{
+  position: fixed;
+  top: 560px;
+  left: 70%;
+  
+}
+.pestle_filter{
+  position: fixed;
+  top: 560px;
+  left: 80%;
+}
+
+
+.pestle_filter_button{
+  position: fixed;
+  top: 590px;
+  left: 80%;
+}
+.button{
+  background-color: rgb(231, 231, 231);
+  border: none;
+  border-radius: 3px;
+
+  
+}
+.button:hover{
+  cursor: pointer;
+  text-decoration: none;
+  
+  background-color: rgb(152, 152, 152);
+}
+
+
+.input{
+
+  border: none;
+  border-radius: 2px;
+  background-color: rgb(216, 216, 216);
+  color: black;
+
+}
+.label{
+
+  color: rgb(166 255 204);
+
+}

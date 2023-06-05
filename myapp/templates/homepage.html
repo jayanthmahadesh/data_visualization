@@ -1,13 +1,162 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <title>Pie Chart with Tooltip</title>
+  <link rel="stylesheet" type="text/css" href="/static/css/homepage.css">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
 </head>
 <body>
-    this is home page!!!
-    <img src="static/images/imageone.png" alt="">
+  <svg id="chart" width="400" height="400"></svg>
+  <svg id="chart_rel" width="400" height="400"></svg>
+  
+  <div class="bar_chart"></div>
+  &emsp; &emsp;&emsp; <----intensity---->
+  <br>
+<br>
+  <div class="bar_chart_year"></div>
+  &emsp; &emsp;&emsp; <----Start_year---->
+  <br><br>
+  <div class="bar_chart_country"></div>
+  <br>
+  &emsp; &emsp;&emsp; <----Country---->
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="tooltip"></div>
+
+</div>
+
+<!-- filters start  -->
+<!-- country filter -->
+<form action="/categorys">
+  <button class="button reset_filter_button" type="submit" style=" background-color: rgb(255, 118, 118);">Reset filter</button>
+</form>
+<form action="{% url 'categorys' %}" method="GET">
+  <label class="country_filter_label label">Country filter</label>
+  <input type="text" class="country_filter input" list="country_options" placeholder="Search..." name="country">
+  <datalist id="country_options">
+    {%for data in unique_country%}
+    <option value="{{data}}">
+      {%endfor%}
+  </datalist>
+  <button class="country_filter_button button" type="submit">Country filter</button>  
+</form>
+<form action="{% url 'categorys' %}" method="GET">
+  <!-- year_end filter -->
+  <label class="year_end_filter_label label">End_year filter</label>
+  <input type="text" class="year_end_filter input" list="year_options" placeholder="Search..." name="end_year">
+  <datalist id="year_options">
+    {%for data in unique_end_year%}
+    <option value="{{data}}">
+      {%endfor%}
+  </datalist>
+
+  <button class="end_year_filter_button button" type="submit">End_year filter</button>  
+</form>
+
+
+<form action="{% url 'categorys' %}" method="GET">
+  <!-- topicfilter -->
+  <label class="topic_filter_label label">Topic filter</label>
+  <input type="text" class="topic_filter input" list="topic_options" placeholder="Search..." name="topic">
+  <datalist id="topic_options">
+    {%for data in unique_topic%}
+    <option value="{{data}}">
+      {%endfor%}
+  </datalist>
+
+  <button class="topic_filter_button button" type="submit">Topic filter</button>  
+</form>
+
+
+
+<form action="{% url 'categorys' %}" method="GET">
+  <!-- topicfilter -->
+  <label class="sector_filter_label label">Sector filter</label>
+  <input type="text" class="sector_filter input" list="sector_options" placeholder="Search..." name="sector">
+  <datalist id="sector_options">
+    {%for data in unique_sector%}
+    <option value="{{data}}">
+      {%endfor%}
+  </datalist>
+
+  <button class="sector_filter_button button" type="submit">Sector filter</button>  
+</form>
+
+<form action="{% url 'categorys' %}" method="GET">
+  <!-- topicfilter -->
+  <label class="region_filter_label label">Region filter</label>
+  <input type="text" class="region_filter input" list="region_options" placeholder="Search..." name="region">
+  <datalist id="region_options">
+    {%for data in unique_region%}
+    <option value="{{data}}">
+      {%endfor%}
+  </datalist>
+
+  <button class="region_filter_button button" type="submit">Region filter</button>  
+</form>
+
+
+
+<form action="{% url 'categorys' %}" method="GET">
+  <!-- topicfilter -->
+  <label class="source_filter_label label">Source filter</label>
+  <input type="text" class="source_filter input" list="source_options" placeholder="Search..." name="source">
+  <datalist id="source_options">
+    {%for data in unique_source%}
+    <option value="{{data}}">
+      {%endfor%}
+  </datalist>
+
+  <button class="source_filter_button button" type="submit">Source filter</button>  
+</form>
+
+
+
+<form action="{% url 'categorys' %}" method="GET">
+  <!-- topicfilter -->
+  <label class="pestle_filter_label label">Pestle filter</label>
+  <input type="text" class="pestle_filter input" list="pestle_options" placeholder="Search..." name="pestle">
+  <datalist id="pestle_options">
+    {%for data in unique_pestle%}
+    <option value="{{data}}">
+      {%endfor%}
+  </datalist>
+
+  <button class="pestle_filter_button button" type="submit">Pestle filter</button>  
+</form>
+
+
+
+<form id="myForm" action="/display/" method="post">
+  <input type="hidden" id="filter_type" name="filter_type" value="a">
+  <input type="hidden" id="filter_value" name="filter_value" value="a">
+  <input type="hidden" id="formvariable" name="formvariable" value="0"/>
+  <input type="hidden" id="formvariable_type" name = "formvariable_type" value="intensity">
+</form>
+<script>
+    var intensity_sum = '{{ intensity_sum }}';
+    var intensity_frontend = '{{intensity_frontend}}';
+    var likelihood_sum = '{{likelihood_sum}}'
+    var likelihood_frontend = '{{likelihood_frontend}}'
+    var relevance_sum = '{{relevance_sum}}'
+    var relevance_frontend = '{{relevance_frontend}}'
+    var start_year_frontend = '{{start_year_frontend}}'
+    var start_year_sum = '{{start_year_sum}}'
+    var country_sum='{{country_sum}}'
+    var country_frontend = '{{country_frontend}}'
+    const form = document.getElementById('myForm');
+    const formvariable = document.getElementById('formvariable');
+    const filter_type = document.getElementById('filter_type')
+    const filter_value = document.getElementById('filter_value')
+    const formvariable_type = document.getElementById('formvariable_type')
+    filter_type.value = '{{filter_type}}';
+    filter_value.value = '{{filter_value}}'
+
+</script>
+  <script src="/static/js/homepage.js"></script>
 </body>
 </html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="/categorys">
+    <br>
+    <br>
+    &emsp;&emsp;&emsp; <button type="submit">Home</button>
+    </form>
+    <div class="card_container">
+      {% for data in datas %}
+      <a href="{{data.url}}">
+      <div class="card">
+        <div class="sector gap">
+          Sector : {% if data.sector == '-' %}NaN{% else %}{{data.sector}}{%endif %}
+        </div>
+        <div class="topic gap">
+          Topic : {% if data.topic == '-' %}NaN{% else %}{{data.topic}}{%endif %}
+        </div>
+        <div class="country gap">
+          Country : {% if data.country == '-' %}NaN{% else %}{{data.country}}{%endif %}
+        </div>
+
+        <div class="insight gap">
+          Insight : {% if data.insight == '-' %}NaN{% else %}{{data.insight}}{%endif %}
+        </div>
+        <div class="source gap">
+          Source : {% if data.source == '-' %}NaN{% else %}{{data.source}}{%endif %}
+        </div>
+        <div class="pestle gap">
+            Pestle: {% if data.pestle == '-' %}NaN{% else %}{{data.pestle}}{%endif %}
+          </div>
+          <div class="intensity gap">
+            intensity : {% if data.intensity == '-' %}NaN{% else %}{{data.intensity}}{%endif %}
+          </div>
+      </div>
+    </a>
+      {% endfor %}
+</div>
+  </body>
+  <style>
+    a{
+        color: white;
+        text-decoration: none;
+        transition: transform 0.3s;
+        margin: 5px;
+    }
+
+    a:hover{
+        z-index: 100;
+        border: 1px solid rgb(9, 255, 0);
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+    }
+    .card_container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 100px;
+      align-items: center;
+
+    }
+    .card {
+      border: 0.1px solid rgb(17, 255, 0);
+
+      margin: 5px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 300px;
+    }
+    .gap {
+      margin: 5px;
+    }
+  </style>
+</html>
